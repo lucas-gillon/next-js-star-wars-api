@@ -39,17 +39,17 @@ export const Layout: React.FC = ({ children }) => {
       </nav>
       <article>{children}</article>
       <hr />
-      {/* <footer>
+      <footer>
         <div className="card-body container">
-          <h5 className="card-title">Made by lucas-gillon ©</h5>
+          <h5 className="card-title">Made with</h5>
           <a
-            href="https://github.com/lucas-gillon/next-js-flashcards"
+            href="https://swapi.dev"
             target={"_blank"} rel={"noreferrer"}
           >
-            Click here to see project on Github
+            Star wars API
           </a>
         </div>
-      </footer> */}
+      </footer>
     </div>
   );
 };
