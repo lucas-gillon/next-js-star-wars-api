@@ -28,23 +28,13 @@ export const Layout: React.FC = ({ children }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          {/* <ul className="navbar-nav">
+          <ul className="navbar-nav">
             <li className="nav-item">
-              <Link href="/cards/mental-flashcard">
-                <a className="nav-link">Mental Flashcard</a>
+              <Link href="/vehicles">
+                <a className="nav-link">All vehicles</a>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link href="/cards/questions-with-input">
-                <a className="nav-link">Input Flashcard</a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/cards/radio-flashcard">
-                <a className="nav-link">Radio Flashcard</a>
-              </Link>
-            </li>
-          </ul> */}
+          </ul>
         </div>
       </nav>
       <article>{children}</article>
