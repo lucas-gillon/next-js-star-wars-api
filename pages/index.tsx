@@ -4,7 +4,6 @@ import { UserProvider, useUser } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 
 export default function Home() {
-
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
@@ -14,9 +13,9 @@ export default function Home() {
   if (user) {
     return (
       <div>
-        {/* <h2>{user.name}</h2> */}
-        {/* <p>{user.email}</p> */}
-        <a href="/api/logout">Logout</a>
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+        <a href="/api/auth/logout">Logout</a>
       </div>
     );
   }
@@ -36,7 +35,7 @@ export default function Home() {
         <MainCategories />
         <div className="container">
           <li>
-            <Link href={"/api/login"}>login</Link>
+            <Link href={"/api/auth/login"}>login</Link>
           </li>
         </div>
       </Layout>
