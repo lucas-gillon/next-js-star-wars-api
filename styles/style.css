@@ -1,0 +1,58 @@
+body {
+  background-color: black;
+  font-family: "Open Sans", sans-serif;
+  color: rgb(255, 208, 0);
+}
+button:hover {
+  cursor:pointer;
+}
+fieldset {
+  position: relative;
+  width: 200px;
+  margin: 0%;
+  text-align: center;
+  border-radius:8px;
+  border-color: white;
+  border-style: solid;
+}
+h1 {
+  font-family: "Open Sans", sans-serif;
+}
+p, a {
+  font-family: "Open Sans", sans-serif;
+  color: rgb(255, 208, 0);
+}
+a:hover {
+  cursor: pointer;
+  color: rgb(255, 208, 0)
+}
+
+.img:hover{
+  cursor: pointer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  padding: 10px;
+}
+.grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+}
+
+.card {
+  padding: 1rem;
+  background-color: inherit;
+}
+.cards {
+  max-width: 1800px;
+  margin: auto;
+  display: grid;
+  grid-gap: 10rem;
+  padding:auto;
+}
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(4, 1fr); }
+}

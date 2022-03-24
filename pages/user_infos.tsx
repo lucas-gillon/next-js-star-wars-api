@@ -10,14 +10,15 @@ const UserInfos = () => {
   if (error) return <div>{error.message}</div>;
 
   if (user) {
-    console.log(user);
     return (
       <Layout>
         <div className="container">
           <h2>{user.name}</h2>
           <p>Verified email: {user.email_verified.toString()}</p>
           <p>{user.email}</p>
-          <a href="/api/auth/logout">Logout</a>
+          <Link href={"/aip/auth/logout"}>
+            <a>Logout</a>
+          </Link>
         </div>
       </Layout>
     );
@@ -26,9 +27,7 @@ const UserInfos = () => {
       <Layout>
         <div className="container">
           <h2>Please log in to see user infos</h2>
-          <Link href="/api/auth/login">
-            Login
-          </Link>
+          <Link href="/api/auth/login">Login</Link>
         </div>
       </Layout>
     );

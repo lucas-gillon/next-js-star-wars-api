@@ -1,13 +1,13 @@
 import { useUser } from "@auth0/nextjs-auth0";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import cookieCutter from "cookie-cutter";
-
-  const getCookie = cookieCutter.get("appSession")
-  console.log(getCookie)
 
 export const Layout: React.FC = ({ children }) => {
   const { user } = useUser();
+  if (user) {
+    console.log(user);
+  }
   return (
     <div>
       <Head>
@@ -15,10 +15,14 @@ export const Layout: React.FC = ({ children }) => {
       </Head>
       <nav
         className="navbar navbar-expand-lg navbar-light justify-content-between"
-        style={{ backgroundColor: "#e3f2fd", marginBottom: "2rem" }}
+        style={{
+          backgroundColor: "rgb(255, 208, 0)",
+          color: "black",
+          marginBottom: "2rem",
+        }}
       >
         <Link href="/">
-          <a className="navbar-brand" style={{ marginLeft: "2em" }}>
+          <a className="navbar-brand" style={{ marginLeft: "2rem" }}>
             Star Wars Vehicle Shop
           </a>
         </Link>
@@ -37,29 +41,57 @@ export const Layout: React.FC = ({ children }) => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link href="/vehicles">
-                <a className="nav-link">All vehicles</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/api/auth/login">
-                <a className="nav-link" style={{ backgroundColor: "green" }}>
-                  Login
+                <a className="nav-link" style={{ color: "black" }}>
+                  All vehicles
                 </a>
               </Link>
             </li>
-            <li>
-              <Link href="/api/auth/login">
-                <a className="nav-link">Logout</a>
+            {user ? (
+              <li>
+                <Link href="/api/auth/logout">
+                  <a className="nav-link" style={{ backgroundColor: "red" }}>
+                    Logout
+                  </a>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link href="/api/auth/login">
+                  <a className="nav-link" style={{ backgroundColor: "green" }}>
+                    Login or Signup
+                  </a>
+                </Link>
+              </li>
+            )}
+            {user ? (
+              <Link href={"/user_infos"}>
+                <a className="nav-link" style={{ color: "black" }}>
+                  User Infos
+                </a>
               </Link>
-            </li>
+            ) : (
+              ""
+            )}
+            {user ? (
+              <li>
+                <Link href="/cart">
+                  <a className="nav-link" style={{ color: "black" }}>
+                    Cart
+                  </a>
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
+        </div>
+        <div className="nav-text" style={{ marginRight: "2em" }}>
+          {user ? `Connected as ${user.name}` : "Not logged in"}
         </div>
       </nav>
       <article>{children}</article>
       <hr />
       <footer>
-        {user ? user.name : "Not logged in"}
-
         <div className="card-body container">
           <h5 className="card-title">Made with</h5>
           <a href="https://swapi.dev" target={"_blank"} rel={"noreferrer"}>
