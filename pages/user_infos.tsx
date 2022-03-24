@@ -3,11 +3,7 @@ import Link from "next/link";
 import { Layout } from "../components/layout";
 
 const UserInfos = () => {
-  const { user, error, isLoading } = useUser();
-
-  if (isLoading) return <div>Loading...</div>;
-
-  if (error) return <div>{error.message}</div>;
+  const { user } = useUser();
 
   if (user) {
     return (
@@ -25,10 +21,7 @@ const UserInfos = () => {
   } else {
     return (
       <Layout>
-        <div className="container">
-          <h2>Please log in to see user infos</h2>
-          <Link href="/api/auth/login">Login</Link>
-        </div>
+        <div className="container">Please log in to see your infos</div>
       </Layout>
     );
   }
