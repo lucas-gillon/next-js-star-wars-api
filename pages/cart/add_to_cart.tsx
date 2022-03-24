@@ -12,7 +12,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .collection("basket")
     .findOne({ user: "Lucas Gillon" });
   const cart = await JSON.parse(JSON.stringify(response));
-  console.log(cart)
 
   let items = cart.items;
   items.push(vehicle);
