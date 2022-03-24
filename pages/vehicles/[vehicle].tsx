@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import { Layout } from "../../components/layout";
 import Capitalize from "../../src/capitalize";
+import Link from "next/link";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const vehicleId = context.params.vehicle;
@@ -48,6 +49,9 @@ const VehicleInfos: React.FC<{ vehicle: any }> = ({ vehicle }) => {
             <u>Price</u>: {vehicle.cost_in_credits}
           </li>
         )}
+        <Link href={`/cart/add_to_cart?item=${vehicle.name}`}>
+          <a>Add to cart</a>
+        </Link>
       </div>
     </Layout>
   );

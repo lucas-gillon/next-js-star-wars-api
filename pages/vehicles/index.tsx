@@ -20,9 +20,16 @@ const AllVehicles: React.FC<{ vehicles: any }> = ({ vehicles }) => {
   return (
     <Layout>
       <div className="container">
-        <h4>
+        <h2
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingBottom: "1.5em",
+          }}
+        >
           <u>List of all vehicles :</u>
-        </h4>
+        </h2>
         <div className="cards">
           {vehicles.map(
             (element: {

@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import { Layout } from "../components/layout";
-import { getDatabase } from "../src/get-database";
+import { Layout } from "../../components/layout";
+import { getDatabase } from "../../src/get-database";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const mongodb = await getDatabase();
