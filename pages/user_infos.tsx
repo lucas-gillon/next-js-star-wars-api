@@ -12,7 +12,7 @@ const UserInfos = () => {
           <h2>{user.name}</h2>
           <p>Verified email: {user.email_verified ? "true" : "false"}</p>
           <p>{user.email}</p>
-          <Link href={"/aip/auth/logout"}>
+          <Link href={"/api/auth/logout"}>
             <a>Logout</a>
           </Link>
         </div>
