@@ -53,7 +53,7 @@ const VehicleInfos: React.FC<{ vehicle: any }> = ({ vehicle }) => {
         )}
         {user ? (
           <Link
-            href={`/cart/add_to_cart?item=${vehicle.name}&amount=${vehicle.cost_in_credits}`}
+            href={`/cart/add?item=${vehicle.name}&amount=${vehicle.cost_in_credits}`}
           >
             <a>Add to cart</a>
           </Link>

@@ -1,5 +1,6 @@
 import { useUser } from "@auth0/nextjs-auth0";
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { Layout } from "../../components/layout";
 import { getDatabase } from "../../src/get-database";
 
@@ -37,13 +38,27 @@ const Cart: React.FC<{ user_name: string; items: string[]; total: number }> = ({
           {items.length > 0
             ? items.map((element) => {
                 return (
-                  <li key={element[0]}>
-                    {element[0]}, <u>{element[1]}</u> credits
-                  </li>
+                  <ul key={element[0]}>
+                    <li>
+                      {element[0]}, <u>{element[1]}</u> credits
+                    </li>
+                    <Link href={`/cart/remove?item=${element[0]}`}>
+                      <a>Remove</a>
+                    </Link>
+                  </ul>
                 );
               })
-            : "Nothing in the cart"}<br /><br /><br /><br />
+            : "Nothing in the cart"}
+          <br />
+          <br />
           {total > 0 ? <div>Total amount : {total} credits</div> : ""}
+          {items.length > 0 ? (
+            <Link href="/cart/empty">
+              <a>Empty your cart</a>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
       </Layout>
     );

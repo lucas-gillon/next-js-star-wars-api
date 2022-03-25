@@ -58,13 +58,18 @@ const AllVehicles: React.FC<{ vehicles: any }> = ({ vehicles }) => {
                     {element.name}
                   </Link>
                   <p className="card-text" style={{ textAlign: "left" }}>
-                    <li>
-                      Vehicle class : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <u>{Capitalize(element.vehicle_class)}</u>
-                    </li>
-                    <li>
-                      Price : <u>{element.cost_in_credits}</u> credits{" "}
-                    </li>
+                    <ul>
+                      Vehicle class :
+                      <li>
+                        <u>{Capitalize(element.vehicle_class)}</u>
+                      </li>
+                    </ul>
+                    <ul>
+                      Price :
+                      <li>
+                        <u>{element.cost_in_credits}</u> credits{" "}
+                      </li>
+                    </ul>
                   </p>
                 </fieldset>
               );

@@ -1,4 +1,3 @@
-import { ObjectID } from "bson";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { Layout } from "../../components/layout";
@@ -17,25 +16,26 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const items = cart.items;
 
-  // let findItem = items.filter((element: any, index: string | string[]) => {
-  //   if (index[0] === vehicle) {
-  //     return element[0];
-  //   }
-  // });
-  // console.log(findItem)
+  const findItem = items.filter(
+    (element: (string | string[])[]) => element[0] !== vehicle
+  );
 
-  // const findItem = items.find(
-  //   (element: (string | string[])[]) =>
-  //     element[0] === vehicle && element[1] === amount
-  // );
-  // console.log(findItem);
+  const removeItem = items.filter(
+    (element: (string | string[])[]) => element[0] === vehicle
+  );
 
-  // if (cart.items.includes(findItem)) {
-  //   await mongodb
-  //     .db()
-  //     .collection("basket")
-  //     .updateOne({}, { $set: { items: [], total_amount: 0 } });
-  // }
+  await mongodb
+    .db()
+    .collection("basket")
+    .updateOne(
+      {},
+      {
+        $set: {
+          items: findItem,
+          total_amount: cart.total_amount - parseInt(removeItem[0][1]),
+        },
+      }
+    );
 
   return {
     props: {
@@ -50,7 +50,7 @@ const Cart: React.FC<{ vehicle: string }> = ({ vehicle }) => {
       <div className="container">
         <h4>
           {vehicle}
-          {" has successfully been added to your cart 😉"}
+          {" has successfully been removed from your cart 😉"}
         </h4>
         <li>
           <Link href={"/vehicles"}>
