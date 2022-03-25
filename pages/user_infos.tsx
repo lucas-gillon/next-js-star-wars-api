@@ -10,7 +10,7 @@ const UserInfos = () => {
       <Layout>
         <div className="container">
           <h2>{user.name}</h2>
-          <p>Verified email: {user.email_verified.toString()}</p>
+          <p>Verified email: {user.email_verified ? "true" : "false"}</p>
           <p>{user.email}</p>
           <Link href={"/aip/auth/logout"}>
             <a>Logout</a>
