@@ -38,7 +38,7 @@ const Cart: React.FC<{ user_name: string; items: string[]; total: number }> = ({
             ? items.map((element) => {
                 return (
                   <li key={element[0]}>
-                    {element[0]} , <u>{element[1]}</u> credits
+                    {element[0]}, <u>{element[1]}</u> credits
                   </li>
                 );
               })

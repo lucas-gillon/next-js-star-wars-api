@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import { Layout } from "../../components/layout";
 import Capitalize from "../../src/capitalize";
 import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const vehicleId = context.params.vehicle;
@@ -18,6 +19,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const VehicleInfos: React.FC<{ vehicle: any }> = ({ vehicle }) => {
+  const { user } = useUser();
   return (
     <Layout>
       <div className="container">
@@ -49,9 +51,17 @@ const VehicleInfos: React.FC<{ vehicle: any }> = ({ vehicle }) => {
             <u>Price</u>: {vehicle.cost_in_credits}
           </li>
         )}
-        <Link href={`/cart/add_to_cart?item=${vehicle.name}&amount=${parseInt(vehicle.cost_in_credits)}`}>
-          <a>Add to cart</a>
-        </Link>
+        {user ? (
+          <Link
+            href={`/cart/add_to_cart?item=${vehicle.name}&amount=${vehicle.cost_in_credits}`}
+          >
+            <a>Add to cart</a>
+          </Link>
+        ) : (
+          <h4>
+            <u>Please log in to add something to your cart</u>
+          </h4>
+        )}
       </div>
     </Layout>
   );

@@ -5,9 +5,6 @@ import Link from "next/link";
 
 export const Layout: React.FC = ({ children }) => {
   const { user } = useUser();
-  if (user) {
-    console.log(user);
-  }
   return (
     <div>
       <Head>
