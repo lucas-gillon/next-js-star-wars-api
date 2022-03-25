@@ -6,6 +6,7 @@ import { getDatabase } from "../../src/get-database";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const vehicle = context.query.item;
+  // const amount: string = context.query.amount.toString();
 
   const mongodb = await getDatabase();
   const response = await mongodb
@@ -16,11 +17,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const items = cart.items;
 
-  const findItem = items.find(
-    (element: (string | string[])[]) =>
-      element[0] === vehicle
-  );
-  console.log(findItem);
+  // let findItem = items.filter((element: any, index: string | string[]) => {
+  //   if (index[0] === vehicle) {
+  //     return element[0];
+  //   }
+  // });
+  // console.log(findItem)
+
+  // const findItem = items.find(
+  //   (element: (string | string[])[]) =>
+  //     element[0] === vehicle && element[1] === amount
+  // );
+  // console.log(findItem);
 
   // if (cart.items.includes(findItem)) {
   //   await mongodb
