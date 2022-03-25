@@ -9,12 +9,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const response = await mongodb
     .db()
     .collection("basket")
-    .findOne({ user: "Lucas Gillon" });
+    .findOne({ "user.email": "lucas.gillon98@gmail.com" });
   const cart = await JSON.parse(JSON.stringify(response));
 
   return {
     props: {
-      user_name: cart.user,
+      user_name: cart.user.name,
       items: cart.items,
       total: cart.total_amount,
     },
@@ -37,13 +37,13 @@ const Cart: React.FC<{ user_name: string; items: string[]; total: number }> = ({
           {items.length > 0
             ? items.map((element) => {
                 return (
-                  <li key={element}>
-                    <u>{element}</u>
+                  <li key={element[0]}>
+                    {element[0]} , <u>{element[1]}</u> credits
                   </li>
                 );
               })
-            : "Nothing in the cart"}
-          {total > 0 ? `Total amount : ${total} Credits` : ""}
+            : "Nothing in the cart"}<br /><br /><br /><br />
+          {total > 0 ? <div>Total amount : {total} credits</div> : ""}
         </div>
       </Layout>
     );

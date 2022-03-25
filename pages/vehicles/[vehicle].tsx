@@ -49,7 +49,7 @@ const VehicleInfos: React.FC<{ vehicle: any }> = ({ vehicle }) => {
             <u>Price</u>: {vehicle.cost_in_credits}
           </li>
         )}
-        <Link href={`/cart/add_to_cart?item=${vehicle.name}`}>
+        <Link href={`/cart/add_to_cart?item=${vehicle.name}&amount=${parseInt(vehicle.cost_in_credits)}`}>
           <a>Add to cart</a>
         </Link>
       </div>
