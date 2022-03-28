@@ -1,7 +1,8 @@
 import { useUser } from "@auth0/nextjs-auth0";
-import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Navbar from "react-bootstrap/Navbar";
+import { Container, Nav, NavDropdown } from "react-bootstrap";
 
 export const Layout: React.FC = ({ children }) => {
   const { user } = useUser();
@@ -10,82 +11,61 @@ export const Layout: React.FC = ({ children }) => {
       <Head>
         <title>Star Wars Vehicle Shop</title>
       </Head>
-      <nav
-        className="navbar navbar-expand-lg navbar-light justify-content-between"
-        style={{
-          backgroundColor: "rgb(255, 208, 0)",
-          color: "black",
-          marginBottom: "2rem",
-        }}
+      <Navbar
+        className="color-nav"
+        expand="lg"
+        style={{ marginBottom: "2rem" }}
       >
-        <Link href="/">
-          <a className="navbar-brand" style={{ marginLeft: "2rem" }}>
-            Star Wars Vehicle Shop
-          </a>
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link href="/vehicles">
-                <a className="nav-link" style={{ color: "black" }}>
-                  All vehicles
-                </a>
-              </Link>
-            </li>
-            {user ? (
-              <li>
-                <Link href="/api/auth/logout">
-                  <a className="nav-link" style={{ backgroundColor: "red" }}>
+        <Container>
+          <Navbar.Brand href="/">Star Wars Vehicle Shop</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/vehicles" style={{ color: "black" }}>
+                All vehicles
+              </Nav.Link>
+              {user ? (
+                <li>
+                  <Nav.Link
+                    href="/api/auth/logout"
+                    style={{ backgroundColor: "red" }}
+                  >
                     Logout
-                  </a>
-                </Link>
-              </li>
-            ) : (
-              <li>
-                <Link href="/api/auth/login">
-                  <a className="nav-link" style={{ backgroundColor: "green" }}>
+                  </Nav.Link>
+                </li>
+              ) : (
+                <li>
+                  <Nav.Link
+                    href="/api/auth/login"
+                    style={{ backgroundColor: "green" }}
+                  >
                     Login or Signup
-                  </a>
-                </Link>
-              </li>
-            )}
-            {user ? (
-              <Link href={"/user_infos"}>
-                <a className="nav-link" style={{ color: "black" }}>
+                  </Nav.Link>
+                </li>
+              )}
+              {user ? (
+                <Nav.Link href={"/user_infos"} style={{ color: "black" }}>
                   User Infos
-                </a>
-              </Link>
-            ) : (
-              ""
-            )}
-            {user ? (
-              <li>
-                <Link href="/cart">
-                  <a className="nav-link" style={{ color: "black" }}>
+                </Nav.Link>
+              ) : (
+                ""
+              )}
+              {user ? (
+                <li>
+                  <Nav.Link href="/cart" style={{ color: "black" }}>
                     Cart
-                  </a>
-                </Link>
-              </li>
-            ) : (
-              ""
-            )}
-          </ul>
-        </div>
-        <div className="nav-text" style={{ marginRight: "2em" }}>
-          {user ? `Connected as ${user.name}` : "Not logged in"}
-        </div>
-      </nav>
+                  </Nav.Link>
+                </li>
+              ) : (
+                ""
+              )}
+            </Nav>
+            <Navbar.Text style={{ marginRight: "2em", color: "black" }}>
+              {user ? `Connected as ${user.name}` : "Not logged in"}
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <article>{children}</article>
       <hr />
       <footer>

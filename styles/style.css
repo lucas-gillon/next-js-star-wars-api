@@ -56,3 +56,7 @@ a:hover {
 @media (min-width: 900px) {
   .cards { grid-template-columns: repeat(4, 1fr); }
 }
+.color-nav {
+  background-color: rgb(255, 208, 0);
+  margin-bottom: "2rem",
+}
