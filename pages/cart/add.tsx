@@ -5,7 +5,7 @@ import { Layout } from "../../components/layout";
 import { getDatabase } from "../../src/get-database";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const vehicle = context.query.item;
+  const vehicle: string | string[] = context.query.item;
   const amount: string = context.query.amount.toString();
 
   const mongodb = await getDatabase();
